@@ -18,13 +18,18 @@
         height: 700px;
       }
       #notes {
-        float: right;
-        width: 30%;
+        width: 50%;
+      }
+      #noteCard {
+        z-index: 1000;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       textarea, input {
         display: block;
         width: 100%;
-        background-color: #FCF5C7;
       }
       input {
         height: 36px;
@@ -48,8 +53,11 @@
       <div class="card">
         <div class="card-body">
           <div id="articles"></div>
-          <div id="notes"></div>
         </div>
+      </div>
+
+      <div class="card" id ="noteCard">
+        <div id="notes"></div>
       </div>
 
       
