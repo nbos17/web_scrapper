@@ -10,6 +10,7 @@ module.exports = function(app) {
 
 // Routes
 
+// Render Home Page
   app.get("/", function(req, res) {
     
 

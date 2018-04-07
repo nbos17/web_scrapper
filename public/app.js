@@ -13,28 +13,30 @@ $.getJSON("/articles", function(data) {
 $(".scrape").on("click", function() {
 
 
-  //scrape articles from the New YorK Times
-//var scrape = function(callback) {
-
   $.ajax({
     method: "GET",
     url : "/scrape"
   }).then(function(data) {
     console.log(data);
-    // for (var i = 0; i < data.length; i++) {
-    // // Display the apropos information on the page
-    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-  
+
   location.reload();
+  });
+
 });
 
 
-//};
+//close note 
+$(document).on("click", "#closeNote", function() {
+  $("#noteCard").css("display", "none");
 });
+
+
+
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function() {
   // Empty the notes from the note section
   $("#notes").empty();
+  $("#noteCard").css("display", "block");
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
 
@@ -55,6 +57,7 @@ $(document).on("click", "p", function() {
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<button id='closeNote'>Close</button>");
 
       // If there's a note in the article
       if (data.note) {
@@ -89,7 +92,8 @@ $(document).on("click", "#savenote", function() {
       // Log the response
       console.log(data);
       // Empty the notes section
-      $("#notes").empty();
+      $('#notes').empty();
+      $("#noteCard").css("display", "none");
     });
 
   // Also, remove the values entered in the input and textarea for note entry
@@ -114,17 +118,6 @@ $(document).on("click", "#save-article", function() {
     //location.reload();
   });
 
-  // console.log("click");
-  // var articleToSave = {};
-  // articleToSave.id = $(this).data("id");
-  // articleToSave.saved = true;
-  // console.log(articleToSave);
-  // $.ajax({
-  //     method: "PATCH",
-  //     url: "/api/articles",
-  //     data: articleToSave
-  // }).then(function(data) {
-  //     location.reload();
-  // });
+
 });  
       
