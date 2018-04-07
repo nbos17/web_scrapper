@@ -4,6 +4,7 @@
 $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
+
     // Display the apropos information on the page
     $("#articles").append("<div class='mainNews' id='" + i + "'>" 
       + "<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "</p>" + "<a href='" + data[i].link + " '>" + data[i].link + "</a>" 
@@ -11,6 +12,10 @@ $.getJSON("/articles", function(data) {
       + data[i]._id +"' value='"+ i +"'>Save Article</button>"  
       + "<button id='noteSave' class='btn btn-secondary' data-id='" 
       + data[i]._id + "'>Create Note</button>" + "</div>");
+
+    if (data[i].saved === true) {
+      $("#" + i).css("background-color", "white");
+    }
   }
 });
 
