@@ -10,18 +10,15 @@ $.getJSON("/articles", function(data) {
 });
 
 
-$(".scrape").on("click", function() {
-
-
+$(document).on("click", "#scrape", function() {
+  console.log("clicked");
   $.ajax({
     method: "GET",
-    url : "/scrape"
+    url :  "/scrape"
   }).then(function(data) {
     console.log(data);
-
-  location.reload();
+    location.reload();
   });
-
 });
 
 
@@ -127,13 +124,4 @@ $(document).on("click", "#savedArticles", function() {
 
   location.href = "/saved";
 
-  $.getJSON("/api/saved", function(data) {
-    console.log("new page");
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-  }
 });
-
-})
