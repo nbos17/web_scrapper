@@ -1,3 +1,4 @@
 # web_scrapper
 
-News headlines scraped from the web. Add notes and comment on any article of you're choosing. 
+News headlines scraped from the New York Times web site. Add notes and comment on any article of your choosing. 
+
