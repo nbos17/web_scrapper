@@ -102,14 +102,14 @@ $(document).on("click", "#savenote", function() {
 $(document).on("click", "#save-article", function() {
 
   console.log("click");
-  var articleToSave = {};
-  articleToSave.id = $(this).attr("data-id");
-  articleToSave.saved = true;
+  var articleToSave = $(this).attr("data-id");
   console.log(articleToSave)
   $.ajax({
-    method : "PATCH",
-    url : "/api/articles",
-    data : articleToSave
+    method : "POST",
+    url: "/articlessaved/" + articleToSave,
+    data : {
+      id : articleToSave
+    }
   }).then(function(data) {
     console.log(data);
     //location.reload();

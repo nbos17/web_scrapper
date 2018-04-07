@@ -37,6 +37,7 @@ module.exports = function(app) {
         result.link = $(this)
           .children("a")
           .attr("href");
+        result.saved = false;
 
         // Create a new Article using the `result` object built from scraping
         db.Article.create(result)
@@ -130,5 +131,26 @@ module.exports = function(app) {
   app.get("/saved", function(req, res) {
     res.render("saved");
   });
+
+
+
+    app.post("/articlessaved/:id", function(req, res) {
+      console.log("We are in articels saved.");
+    // Create a new note and pass the req.body to the entry
+    db.Article.findOne({ _id: req.params.id })
+      .then(function() {
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, {$set: { saved: true }});
+     })
+      .then(function(res) {
+        // If we were able to successfully update an Article, send it back to the client
+        res.json(res);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+      console.log("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+  });
+
 
 };
