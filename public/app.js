@@ -121,3 +121,19 @@ $(document).on("click", "#save-article", function() {
 
 });  
       
+$(document).on("click", "#savedArticles", function() {
+
+  console.log("click");
+
+  location.href = "/saved";
+
+  $.getJSON("/api/saved", function(data) {
+    console.log("new page");
+  // For each one
+  for (var i = 0; i < data.length; i++) {
+    // Display the apropos information on the page
+    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+  }
+});
+
+})
