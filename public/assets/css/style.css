@@ -7,7 +7,7 @@ body { background-color: grey }
 }
 #articles {
   display: inline-block;
-  width: 60%;
+  width: 95%;
   height: 700px;
 }
 #notes {
@@ -40,4 +40,23 @@ input {
 textarea {
   height: 200px;
   font-size: 18px;
+}
+.mainNews {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin : 20px;
+  background-color: #e9ecef;
+  text-align: center;
+}
+#save-article {
+  margin : 15px;
+  background-color: grey;
+}
+p {
+  font-size: 25px;
+}
+#noteSave {
+  margin : 15px;
+  background-color: grey;
 }

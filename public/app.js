@@ -5,7 +5,12 @@ $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>" + "<button id='save-article' data-id='" + data[i]._id + "'>Save Article</button>");
+    $("#articles").append("<div class='mainNews' id='" + i + "'>" 
+      + "<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + "</p>" + "<a href='" + data[i].link + " '>" + data[i].link + "</a>" 
+      + "<br />" + "<button id='save-article' class = 'btn btn-primary' data-id='" 
+      + data[i]._id +"' value='"+ i +"'>Save Article</button>"  
+      + "<button id='noteSave' class='btn btn-secondary' data-id='" 
+      + data[i]._id + "'>Create Note</button>" + "</div>");
   }
 });
 
@@ -29,8 +34,8 @@ $(document).on("click", "#closeNote", function() {
 
 
 
-// Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+// Whenever someone clicks an article
+$(document).on("click", "#noteSave", function() {
   // Empty the notes from the note section
   $("#notes").empty();
   $("#noteCard").css("display", "block");
@@ -100,6 +105,10 @@ $(document).on("click", "#savenote", function() {
 
 
 $(document).on("click", "#save-article", function() {
+
+  var id = $(this).val();
+  console.log(id);
+  $("#" + id).css("background-color", "white");
 
   console.log("click");
   var articleToSave = $(this).attr("data-id");
