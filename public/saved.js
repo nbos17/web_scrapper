@@ -15,7 +15,7 @@ $(document).on("click", "#home", function() {
 });
 
 
-// Whenever someone clicks a p tag
+// Whenever someone clicks an article
 $(document).on("click", "#noteSave", function() {
   // Empty the notes from the note section
   $("#notes").empty();
@@ -38,16 +38,22 @@ $(document).on("click", "#noteSave", function() {
       //$("#notes").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<div id='input'>Previous Notes:  </div>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
       $("#notes").append("<button id='closeNote'>Close</button>");
 
       // If there's a note in the article
-      if (data.note) {
-        // Place the title of the note in the title input
-        //$("#titleinput").val(data.note.title);
-        // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
+      if (data.note.length > 0) {
+        console.log(data.note)
+        for (let i = 0; i < data.note.length; i++) {
+          var newDiv = $("<div>");
+          newDiv.text(data.note[i].body);
+          $('#input').append(newDiv);
+        }
+      }
+      else {
+        $('#input').html("");
       }
     });
 });
