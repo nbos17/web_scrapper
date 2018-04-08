@@ -62,16 +62,18 @@ $(document).on("click", "#noteSave", function() {
       //$("#notes").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<div id='input'>Test</div>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
       $("#notes").append("<button id='closeNote'>Close</button>");
 
       // If there's a note in the article
       if (data.note) {
+          //console.log(data.note.body);
         // Place the title of the note in the title input
         //$("#titleinput").val(data.note.title);
         // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
+        $("#input").html(data.note[0].body);
       }
     });
 });
@@ -81,6 +83,8 @@ $(document).on("click", "#savenote", function() {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
   console.log(thisId)
+  var body = $("#bodyinput").val();
+  console.log(body);
 
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
@@ -91,7 +95,7 @@ $(document).on("click", "#savenote", function() {
       title: thisId,
       // Value taken from note textarea
       body: $("#bodyinput").val(),
-      articleID : thisId
+      //articleID : thisId
     }
   })
     // With that done
@@ -105,7 +109,7 @@ $(document).on("click", "#savenote", function() {
 
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
-  $("#bodyinput").val("");
+  //$("#bodyinput").val("");
 });
 
 
